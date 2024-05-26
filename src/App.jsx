@@ -5,7 +5,7 @@ function App() {
   const [resData, setResData] = useState(null);
 
   useEffect(() => {
-    fetch("/api")
+    fetch("https://safe-dusk-18400-bc6e0d3dfe3f.herokuapp.com/api")
       .then((res) => res.json())
       .then((data) => setBackendData(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -18,7 +18,7 @@ function App() {
     setResData(null);
 
     if (inputValue != "" && inputValue != null && inputValue != undefined) {
-      fetch("/api/data", {
+      fetch("https://safe-dusk-18400-bc6e0d3dfe3f.herokuapp.com/api/data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
