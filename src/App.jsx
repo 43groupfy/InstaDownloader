@@ -59,8 +59,12 @@ function App() {
       <div className="bg-dark text-gray-100 bg-zinc-900 flex justify-center items-start h-screen">
         <div className="container mx-auto py-8 px-4">
           <form onSubmit={handleSubmit}>
+            <h1 className=" text-[1.5rem] font-semibold  mb-4">
+              Welcome to Insta Downloader! 🎉
+            </h1>
             <label htmlFor="videoUrl" className="block mb-2">
-              Enter Insta Reel URL here
+              <br />
+              Pease enter the URL of the Instagram Reel, Story, or Post :
             </label>
             <input
               type="text"
