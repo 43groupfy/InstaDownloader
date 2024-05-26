@@ -91,7 +91,7 @@ function App() {
               />
             ) : null}
             {resData === null ? null : resData === 404 ? (
-              <div>Invalid URL</div>
+              <div className="mt-5">Invalid URL</div>
             ) : (
               <div className="flex  items-center flex-col gap-5">
                 <img
