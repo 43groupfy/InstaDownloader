@@ -19,12 +19,13 @@ function App() {
     setInputValue(e.target.value);
   };
   const handleSubmit = (e) => {
+    setLoading(true);
     if (inputValue == "" || inputValue == null || inputValue == undefined) {
+      setLoading(false);
       setResData("Please enter a valid URL");
       return;
     }
 
-    setLoading(true);
     e.preventDefault();
     setResData(null);
 
