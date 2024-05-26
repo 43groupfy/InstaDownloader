@@ -19,6 +19,11 @@ function App() {
     setInputValue(e.target.value);
   };
   const handleSubmit = (e) => {
+    if (inputValue == "" || inputValue == null || inputValue == undefined) {
+      setResData("Please enter a valid URL");
+      return;
+    }
+
     setLoading(true);
     e.preventDefault();
     setResData(null);
@@ -56,8 +61,8 @@ function App() {
   }, [resData]);
   return (
     <>
-      <div className="bg-dark text-gray-100 bg-zinc-900 flex justify-center items-start h-screen">
-        <div className="container mx-auto py-8 px-4">
+      <div className="flex items-start justify-center h-screen text-gray-100 bg-dark bg-zinc-900">
+        <div className="container px-4 py-8 mx-auto">
           <form onSubmit={handleSubmit}>
             <h1 className=" text-[1.5rem] font-semibold  mb-4">
               Welcome to Insta Downloader! 🎉
@@ -71,11 +76,11 @@ function App() {
               onChange={handleChange}
               name="videoUrl"
               value={inputValue}
-              className="w-full px-4 py-2 rounded-md bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-clifford"
+              className="w-full px-4 py-2 text-gray-100 bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-clifford"
             />
             <button
               type="submit"
-              className="mt-4 px-6 py-2 bg-zinc-100 rounded-md text-zinc-900 font-bold"
+              className="px-6 py-2 mt-4 font-bold rounded-md bg-zinc-100 text-zinc-900"
             >
               Submit
             </button>
@@ -93,7 +98,7 @@ function App() {
             {resData === null ? null : resData === 404 ? (
               <div className="mt-5">Invalid URL</div>
             ) : (
-              <div className="flex  items-center flex-col gap-5">
+              <div className="flex flex-col items-center gap-5">
                 <img
                   src={resData.thumb}
                   alt="Image"
