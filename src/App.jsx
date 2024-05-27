@@ -44,12 +44,23 @@ function App() {
         .then((data) => {
           setLoading(false);
           console.log(data);
+          if (data.data == 500) {
+            console.log(data.data);
+            setResData(404);
+          }
           if (data.data == 404) {
             setResData(404);
             console.log(404);
           } else {
             setResData(data[0]);
           }
+        })
+        .catch((error) => {
+          setLoading(false);
+          setResData(
+            "An error occurred while fetching data. Please try again later."
+          );
+          console.error("An error occurred:", error);
         });
     } else {
       console.log("Invalid Input");
@@ -57,7 +68,7 @@ function App() {
   };
   useEffect(() => {
     if (resData !== null) {
-      console.log(resData);
+      // console.log(resData);
     }
   }, [resData]);
   return (
@@ -98,7 +109,15 @@ function App() {
             ) : null}
             {resData === null ? null : resData === 404 ? (
               <div className="mt-5">Invalid URL</div>
-            ) : (
+            ) : resData === 500 ? (
+              <>
+                console.log("Error")
+                <div className="mt-5">API is down</div>
+              </>
+            ) : resData != null &&
+              resData != 500 &&
+              resData != 404 &&
+              resData != undefined ? (
               <div className="flex flex-col items-center gap-5">
                 <img
                   src={resData.thumb}
@@ -114,6 +133,10 @@ function App() {
                   Download
                 </a>
               </div>
+            ) : (
+              <>
+                <div className="mt-5">Sorry, The API is down 😥</div>
+              </>
             )}
           </div>
         </div>
