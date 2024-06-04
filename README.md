@@ -87,7 +87,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 
 This project is licensed under the MIT License. See the [MIT](https://choosealicense.com/licenses/mit/) license for more information.
-
----
-
-Please replace `https://github.com/yourusername/insta-downloader.git` with the actual URL of your repository. You may also want to add more details about your project, like its features, how to use it, etc.
