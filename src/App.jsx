@@ -8,9 +8,9 @@ function App() {
 
   useEffect(() => {
     //For dev mode
-    // fetch("/api")
-    //For deploy mode
-    fetch("https://safe-dusk-18400-bc6e0d3dfe3f.herokuapp.com/api")
+    fetch("/api")
+      //For deploy mode
+      // fetch("https://safe-dusk-18400-bc6e0d3dfe3f.herokuapp.com/api")
       .then((res) => res.json())
       .then((data) => setBackendData(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -20,7 +20,14 @@ function App() {
   };
   const handleSubmit = (e) => {
     setLoading(true);
-    if (inputValue == "" || inputValue == null || inputValue == undefined) {
+    e.preventDefault();
+    const regexInsta = /instagram\.com/;
+    if (
+      inputValue == "" ||
+      inputValue == null ||
+      inputValue == undefined ||
+      !regexInsta.test(inputValue)
+    ) {
       setLoading(false);
       setResData("Please enter a valid URL");
       return;
@@ -31,9 +38,9 @@ function App() {
 
     if (inputValue != "" && inputValue != null && inputValue != undefined) {
       //For dev mode
-      // fetch("/api/data", {
+      fetch("/api/data", {
       //For deploy mode
-      fetch("https://safe-dusk-18400-bc6e0d3dfe3f.herokuapp.com/api/data", {
+      // fetch("https://safe-dusk-18400-bc6e0d3dfe3f.herokuapp.com/api/data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,13 +118,13 @@ function App() {
               <div className="mt-5">Invalid URL</div>
             ) : resData === 500 ? (
               <>
-                console.log("Error")
                 <div className="mt-5">API is down</div>
               </>
             ) : resData != null &&
               resData != 500 &&
               resData != 404 &&
-              resData != undefined ? (
+              resData != undefined &&
+              resData != "Please enter a valid URL" ? (
               <div className="flex flex-col items-center gap-5">
                 <img
                   src={resData.thumb}
@@ -133,10 +140,12 @@ function App() {
                   Download
                 </a>
               </div>
-            ) : (
+            ) : resData == 500 ? (
               <>
                 <div className="mt-5">Sorry, The API is down 😥</div>
               </>
+            ) : (
+              <div className="mt-5">{resData}</div>
             )}
           </div>
         </div>
