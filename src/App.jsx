@@ -38,9 +38,9 @@ function App() {
 
     if (inputValue != "" && inputValue != null && inputValue != undefined) {
       //For dev mode
-      fetch("/api/data", {
+      // fetch("/api/data", {
       //For deploy mode
-      // fetch("https://safe-dusk-18400-bc6e0d3dfe3f.herokuapp.com/api/data", {
+      fetch("https://safe-dusk-18400-bc6e0d3dfe3f.herokuapp.com/api/data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
